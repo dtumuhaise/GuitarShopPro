@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+<h1>Customers</h1>
+<ul>
+    {% for customer in customers %}
+    <li>
+        {{ customer.firstname }} {{ customer.lastname }}  {{ customer.phone }} {{ customer.email }}
+        <ul>
+            {% for guitar in customer.guitars %}
+            <li>{{ guitar.make }} {{ guitar.model }} - {{ guitar.repair_status }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

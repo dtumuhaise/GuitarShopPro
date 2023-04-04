@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+   <div class="content-section">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Create New Repair Job</legend>
+
+        <div class="form-group">
+          {{ form.customer_id.label(class="form-control-label")}}
+          {{ form.customer_id(class="form-control form-control-lg") }}
+          
+        </div>
+
+        <div class="form-group">
+          {{ form.brand.label(class="form-control-label")}}
+          {{ form.brand(class="form-control form-control-lg") }}
+        </div>
+
+        <div class="form-group">
+          {{ form.model.label(class="form-control-label")}}
+          {{ form.model(class="form-control form-control-lg") }}
+        </div>
+        
+        <div class="form-group">
+          {{ form.serial_number.label(class="form-control-label")}}
+          {{ form.serial_number(class="form-control form-control-lg") }}
+        </div>
+
+        <div class="form-group">
+          {{ form.description.label(class="form-control-label")}}
+          {{ form.description(class="form-control form-control-lg") }}
+        </div>
+
+        <div class="form-group">
+          {{ form.repair_status.label(class="form-control-label")}}
+          {{ form.repair_status(class="form-control form-control-lg") }}     
+        </div>      
+      
+      </fieldset>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create Repair Job</button>
+    </form>
+   </div>
+{% endblock %}
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Add Guitar</h1>
+<form method="post" action="{{ url_for('add_guitar') }}">
+    <label for="make">Make:</label>
+    <input type="text" name="make" required>
+    <br>
+    <label for="model">Model:</label>
+    <input type="text" name="model" required>
+    <br>    
+    <label for="repair_status">Repair Status:</label>
+    <input type="text" name="repair_status" required>
+    <br>
+    <label for="customer_id">Customer:</label>
+    <select name="customer_id">
+        {% for customer in customers %}
+        <option value="{{ customer.id }}">{{ customer.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Add">
+</form> -->
+
