@@ -9,6 +9,10 @@ from flask import render_template, request, redirect, url_for, flash
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
 # Add customer page
 @app.route('/customers/add', methods=['GET', 'POST'])
 def add_customer():

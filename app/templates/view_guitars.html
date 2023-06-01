@@ -4,28 +4,32 @@
 
 {% block content %}
 <h1>Repair Jobs</h1>
-<table>
-    <tr>
-        <th>Customer</th>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Serial Number</th>
-        <th>Repair Status</th>        
-        <th>Actions</th>
-    </tr>
-    {% for guitar in guitars %}
-    <tr>
-        <td>{{ guitar.customer.firstname }} {{ guitar.customer.lastname }}</td>
-        <td>{{ guitar.brand }}</td>
-        <td>{{ guitar.model }}</td>
-        <td>{{ guitar.serial_number}}</td>
-        <td>{{ guitar.repair_status }}</td>
-        
-        <td>
-          
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Serial Number</th>
+                <th>Repair Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guitar in guitars %}
+            <tr>
+                <td>{{ guitar.customer.firstname }} {{ guitar.customer.lastname }}</td>
+                <td>{{ guitar.brand }}</td>
+                <td>{{ guitar.model }}</td>
+                <td>{{ guitar.serial_number}}</td>
+                <td>{{ guitar.repair_status }}</td>
+                <td>
+                    <!-- Actions column content -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
-

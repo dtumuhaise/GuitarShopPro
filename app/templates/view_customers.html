@@ -3,17 +3,28 @@
 {% block title %}Customers{% endblock %}
 
 {% block content %}
-<h1>Customers</h1>
-<ul>
-    {% for customer in customers %}
-    <li>
-        {{ customer.firstname }} {{ customer.lastname }}  {{ customer.phone }} {{ customer.email }}
-        <ul>
-            {% for guitar in customer.guitars %}
-            <li>{{ guitar.make }} {{ guitar.model }} - {{ guitar.repair_status }}</li>
+<div class="table-responsive">       
+    <h2>Customers</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>        
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Guitars</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.firstname }} {{ customer.lastname }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.email }}</td>
+                <td></td>
+            </tr>
             {% endfor %}
-        </ul>
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
