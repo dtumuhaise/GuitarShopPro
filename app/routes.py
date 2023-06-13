@@ -18,7 +18,8 @@ def about():
 def add_customer():
     form = CustomerForm()
     if form.validate_on_submit():
-        customer = Customer(firstname=form.firstname.data, lastname=form.lastname.data, email=form.email.data, phone=form.phone.data)
+        customer = Customer(firstname=form.firstname.data,\
+            lastname=form.lastname.data, email=form.email.data, phone=form.phone.data)
         db.session.add(customer)
         db.session.commit()
         flash('Customer added successfully', 'success')
