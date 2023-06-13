@@ -4,10 +4,15 @@ from app.forms import CustomerForm, GuitarForm
 from flask import render_template, request, redirect, url_for, flash
 from sqlalchemy import or_
 
-# Home page
+# landing page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Index')
+
+#home page
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
 
 @app.route('/about')
 def about():

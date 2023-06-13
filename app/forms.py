@@ -15,10 +15,10 @@ class CustomerForm(FlaskForm):
 class GuitarForm(FlaskForm):
     customer_id = SelectField('Customer', coerce=int)
     brand = StringField('Guitar Brand', validators=[DataRequired(), Length(max=120)])
-    model = StringField('Guitar Model', validators=[DataRequired(), Length(max=120)])
+    model = SelectField('Repair Status', choices=[('Stratocaster', 'Stratocaster'), ('Telecaster', 'Telecaster'), ('Les_Paul', 'Les Paul'), ('Acoustic', 'Acoustic Guitar'), ('4_string_Bass', '4 String Bass'), ('5_string_Bass', '5 String Bass')], validators=[DataRequired()])
     serial_number = StringField('Serial Number', validators=[Length(max=120)])
     description = StringField('Repair Description', widget=TextArea(), validators=[DataRequired(), Length(max=250)])
-    repair_status = StringField('Repair Status', validators=[DataRequired(), Length(max=120)])
+    repair_status = SelectField('Repair Status', choices=[('pending', 'Pending'), ('completed', 'Completed'), ('under_repair', 'Under Repair')], validators=[DataRequired()])
     
     submit = SubmitField('Create')
 
