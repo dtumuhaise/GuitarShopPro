@@ -7,9 +7,19 @@
         <legend class="border-bottom mb-4">New Customer</legend>
 
         <div class="form-group">
-          {{ form.firstname.label(class="form-control-label")}}        
-          {{ form.firstname(class="form-control form-control-lg") }}     
-     
+          {{ form.firstname.label(class="form-control-label")}} 
+          
+          {% if form.firstname.errors %}
+            {{ form.firstname(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.firstname.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            {{ form.firstname(class="form-control form-control-lg") }}
+          {% endif %}
+      
 
 
         </div>

@@ -1,1 +1,1 @@
-# GuitarShopPro
+# GuitarTechPro

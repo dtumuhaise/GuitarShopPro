@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+ {% block content %}
+
+  {% for guitar in guitars %}
+ <h1 class="mb-3">{{ guitar.customer.firstname }} {{ guitar.customer.lastname }}</h1>
+
+ <article class="media content-section">
+   
+     <div class="media-body">
+       <div class="article-metadata">
+            <a class="mr-2">Guitar: {{ guitar.brand }} {{ guitar.model }} {{ guitar.serial_number }}</a>
+         
+       </div>
+       <p class="article-content">{{ guitar.description }}</p>
+     </div>
+   </article>
+ {% endfor %}
+
+    {% endblock %}

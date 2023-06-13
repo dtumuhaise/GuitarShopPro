@@ -2,7 +2,7 @@ from app import app, db
 from app.models import Customer, Guitar
 from app.forms import CustomerForm, GuitarForm
 from flask import render_template, request, redirect, url_for, flash
-
+from sqlalchemy import or_
 
 # Home page
 @app.route('/')
@@ -18,13 +18,26 @@ def about():
 def add_customer():
     form = CustomerForm()
     if form.validate_on_submit():
-        customer = Customer(firstname=form.firstname.data,\
-            lastname=form.lastname.data, email=form.email.data, phone=form.phone.data)
+        existing_customer = Customer.query.filter(or_(
+            Customer.email == form.email.data,
+            Customer.phone == form.phone.data
+        )).first()
+        
+        if existing_customer:
+            flash('Customer with the same email or phone number already exists', 'error')
+            return redirect(url_for('add_customer'))
+        
+        customer = Customer(firstname=form.firstname.data,
+                            lastname=form.lastname.data,
+                            email=form.email.data,
+                            phone=form.phone.data)
         db.session.add(customer)
         db.session.commit()
         flash('Customer added successfully', 'success')
         return redirect(url_for('add_guitar'))
+    
     return render_template('add_customer.html', title='Add Customer', form=form)
+
 
 
 # Create Repair job page
@@ -59,3 +72,9 @@ def view_guitars():
 def view_customers():
     customers = Customer.query.all()
     return render_template('view_customers.html', customers=customers)
+
+# view guitars broken down by custommer
+@app.route('/customers/view/<int:customer_id>', methods=['GET', 'POST'])
+def view_customer_guitars(customer_id):
+    guitars = Guitar.query.filter_by(customer_id=customer_id)
+    return render_template('view_customer_guitars.html', guitars=guitars)
