@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
- {% block content %}
 
-  {% for guitar in guitars %}
- <h1 class="mb-3">{{ guitar.customer.firstname }} {{ guitar.customer.lastname }}</h1>
+{% block content %}
+  <div class="container">
+    {% set displayed_customers = [] %}
 
- <article class="media content-section">
-   
-     <div class="media-body">
-       <div class="article-metadata">
-            <a class="mr-2">Guitar: {{ guitar.brand }} {{ guitar.model }} {{ guitar.serial_number }}</a>
-         
-       </div>
-       <p class="article-content">{{ guitar.description }}</p>
-     </div>
+    {% for guitar in guitars %}
+      {% if guitar.customer not in displayed_customers %}
+        <div class="card bg-light mb-4">
+          <div class="card-body">
+            <h1 class="card-title">{{ guitar.customer.firstname }} {{ guitar.customer.lastname }}</h1>
+          </div>
+        </div>
+        {% set _ = displayed_customers.append(guitar.customer) %}
+      {% endif %}
 
-
-   </article>
- {% endfor %}
-
-    {% endblock %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ guitar.brand }} {{ guitar.model }} {{ guitar.serial_number }}</h5>
+          <p class="card-text">{{ guitar.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
