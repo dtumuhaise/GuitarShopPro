@@ -24,7 +24,7 @@ def add_customer():
         )).first()
         
         if existing_customer:
-            flash('Customer with the same email or phone number already exists', 'error')
+            flash(f'Customer with the same email or phone number already exists', 'error')
             return redirect(url_for('add_customer'))
         
         customer = Customer(firstname=form.firstname.data,
@@ -33,7 +33,7 @@ def add_customer():
                             phone=form.phone.data)
         db.session.add(customer)
         db.session.commit()
-        flash('Customer added successfully', 'success')
+        flash(f'Customer added successfully', 'success')
         return redirect(url_for('add_guitar'))
     
     return render_template('add_customer.html', title='Add Customer', form=form)
